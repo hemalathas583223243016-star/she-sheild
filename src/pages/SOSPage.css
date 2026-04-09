@@ -1,0 +1,386 @@
+/* ── HOW IT WORKS ── */
+.sos-how-it-works {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 18px 22px;
+  max-width: 320px;
+  width: 100%;
+}
+.how-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+.sos-how-it-works ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+.sos-how-it-works li {
+  font-size: 0.84rem;
+  color: #64748b;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+  counter-increment: none;
+}
+
+/* ── CONTACTS CARD ── */
+.contacts-card { border-color: rgba(255,45,120,0.15) !important; }
+.card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.card-head h3 { margin: 0; }
+.contact-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(255,45,120,0.15);
+  color: #ff6ba8;
+}
+
+.no-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+.no-contacts p { font-size: 0.84rem; color: #64748b; margin: 0; }
+
+/* Contact row */
+.c-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff2d78, #a855f7);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 800; color: white;
+  flex-shrink: 0;
+}
+.c-phone-hidden {
+  font-size: 0.78rem;
+  color: #475569;
+  letter-spacing: 2px;
+  font-family: monospace;
+}
+.c-phone-visible {
+  font-size: 0.78rem;
+  color: #67e8f9;
+  font-family: monospace;
+}
+
+.sms-send-btn {
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #ff2d78, #a855f7);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sms-send-btn:hover { transform: scale(1.05); }
+
+.delete-contact {
+  background: none;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #f87171;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.delete-contact:hover { background: rgba(239,68,68,0.15); }
+
+.add-contact-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px dashed rgba(255,45,120,0.4);
+  background: rgba(255,45,120,0.06);
+  color: #ff6ba8;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+.add-contact-btn:hover { background: rgba(255,45,120,0.12); border-style: solid; }
+
+/* Add Form */
+.add-form {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.form-input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: #f8fafc;
+  font-size: 0.88rem;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: rgba(255,45,120,0.5); }
+.form-input::placeholder { color: #475569; }
+.form-err { font-size: 0.78rem; color: #f87171; }
+.form-actions { display: flex; gap: 8px; }
+.form-save {
+  flex: 1; padding: 10px;
+  background: linear-gradient(135deg, #ff2d78, #a855f7);
+  color: white; border: none; border-radius: 10px;
+  font-size: 0.88rem; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.form-cancel {
+  flex: 1; padding: 10px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8; border-radius: 10px;
+  font-size: 0.88rem; cursor: pointer; font-family: 'Inter', sans-serif;
+}
+
+/* Voice phrases */
+.trigger-phrases { margin-top: 10px; }
+.trigger-phrases p { font-size: 0.75rem; color: #64748b; margin-bottom: 8px; }
+.phrases { display: flex; flex-wrap: wrap; gap: 6px; }
+.phrase-chip {
+  padding: 5px 12px;
+  background: rgba(255,45,120,0.12);
+  border: 1px solid rgba(255,45,120,0.25);
+  color: #ff6ba8; border-radius: 9999px;
+  font-size: 0.78rem; font-weight: 600; font-family: monospace;
+}
+
+.sos-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.sos-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.sos-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.sos-header p { color: #94a3b8; font-size: 1rem; }
+
+/* ── LAYOUT ── */
+.sos-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── SOS BUTTON AREA ── */
+.sos-center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.sos-rings {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 45, 120, 0.3);
+  animation: ripple 2.5s ease-out infinite;
+}
+.ring-1 { width: 220px; height: 220px; animation-delay: 0s; }
+.ring-2 { width: 260px; height: 260px; animation-delay: 0.6s; opacity: 0.6; }
+.ring-3 { width: 300px; height: 300px; animation-delay: 1.2s; opacity: 0.3; }
+
+@keyframes ripple {
+  0%   { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.sos-button {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 5;
+  font-family: 'Outfit', sans-serif;
+}
+
+.sos-button.idle {
+  background: linear-gradient(135deg, #ef4444, #ff2d78, #c9185a);
+  box-shadow: 0 0 60px rgba(239, 68, 68, 0.5), 0 20px 50px rgba(255, 45, 120, 0.4);
+  animation: pulse-ring 1.8s infinite;
+}
+.sos-button.idle:hover { transform: scale(1.08); }
+
+.sos-button.locating {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  box-shadow: 0 0 50px rgba(245, 158, 11, 0.4);
+  cursor: not-allowed;
+  animation: spin 1.5s linear infinite;
+}
+
+.sos-button.ready {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  box-shadow: 0 0 60px rgba(245, 158, 11, 0.5);
+  animation: pulse-ring 0.5s infinite;
+}
+
+.sos-button.sent {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 0 50px rgba(34, 197, 94, 0.4);
+}
+
+.sos-label { font-size: 2.2rem; font-weight: 900; color: white; letter-spacing: 2px; }
+.sos-sub   { font-size: 0.62rem; font-weight: 700; color: rgba(255,255,255,0.8); letter-spacing: 2px; }
+
+/* Location Card */
+.location-card {
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: 16px;
+  padding: 18px 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+}
+.coords { font-size: 0.8rem; color: #67e8f9; font-family: monospace; margin: 6px 0; }
+.maps-link { font-size: 0.85rem; color: #06b6d4; text-decoration: none; font-weight: 600; }
+.maps-link:hover { text-decoration: underline; }
+
+.cancel-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #94a3b8;
+  padding: 10px 28px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+.cancel-btn:hover { background: rgba(255,255,255,0.12); color: #f8fafc; }
+
+/* ── RIGHT COL CARDS ── */
+.sos-right-col { display: flex; flex-direction: column; gap: 16px; }
+
+.sos-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 22px;
+  backdrop-filter: blur(12px);
+}
+.sos-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+.card-sub { font-size: 0.8rem; color: #64748b; margin-bottom: 14px; }
+
+/* Contacts */
+.contacts-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+.c-emoji { font-size: 1.5rem; }
+.c-info { flex: 1; }
+.c-name  { display: block; font-size: 0.88rem; font-weight: 600; }
+.c-phone { font-size: 0.78rem; color: #64748b; text-decoration: none; }
+.c-phone:hover { color: #ff6ba8; }
+.sms-btn { font-size: 1.3rem; text-decoration: none; transition: transform 0.2s; }
+.sms-btn:hover { transform: scale(1.2); }
+
+/* Toggle Button */
+.toggle-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 10px;
+}
+.toggle-btn.active {
+  background: rgba(255, 45, 120, 0.15);
+  border-color: rgba(255, 45, 120, 0.4);
+  color: #ff6ba8;
+}
+.status-text { font-size: 0.78rem; color: #64748b; }
+
+/* Call Grid */
+.call-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.call-chip {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+.call-chip.red    { background: rgba(239,68,68,0.15);   color: #fca5a5;  border: 1px solid rgba(239,68,68,0.3); }
+.call-chip.orange { background: rgba(245,158,11,0.15);  color: #fcd34d;  border: 1px solid rgba(245,158,11,0.3); }
+.call-chip.pink   { background: rgba(255,45,120,0.15);  color: #ff6ba8;  border: 1px solid rgba(255,45,120,0.3); }
+.call-chip.purple { background: rgba(168,85,247,0.15);  color: #c084fc;  border: 1px solid rgba(168,85,247,0.3); }
+.call-chip:hover  { transform: translateY(-2px) scale(1.03); }
+
+/* Log */
+.log-list { display: flex; flex-direction: column; gap: 5px; margin-top: 10px; }
+.log-item { font-size: 0.75rem; color: #64748b; font-family: monospace; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sos-layout { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,228 @@
+.route-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.route-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.route-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.route-header p { color: #94a3b8; font-size: 1rem; }
+
+/* ── LAYOUT ── */
+.route-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── INPUT PANEL ── */
+.route-input-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.input-section { display: flex; flex-direction: column; gap: 10px; }
+
+.field-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.route-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+.route-input::placeholder { color: #475569; }
+.route-input:focus {
+  border-color: rgba(255, 45, 120, 0.5);
+  background: rgba(255, 45, 120, 0.05);
+  box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.1);
+}
+
+/* Chip Group */
+.chip-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  padding: 9px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.chip:hover { background: rgba(255,255,255,0.08); color: #f8fafc; }
+.chip.active {
+  background: rgba(255, 45, 120, 0.18);
+  border-color: rgba(255, 45, 120, 0.5);
+  color: #ff6ba8;
+}
+
+/* Analyze Button */
+.analyze-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #ff2d78, #a855f7);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(255, 45, 120, 0.35);
+  font-family: 'Inter', sans-serif;
+  min-height: 54px;
+}
+.analyze-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(255, 45, 120, 0.45); }
+.analyze-btn.loading { opacity: 0.8; cursor: not-allowed; }
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* ── RESULT PANEL ── */
+.route-result-panel { min-height: 400px; }
+
+.result-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 400px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(255,255,255,0.08);
+  border-radius: 24px;
+  gap: 14px;
+  padding: 40px;
+}
+.placeholder-shield { font-size: 4rem; opacity: 0.3; }
+.loading-brain { font-size: 3.5rem; animation: float 1.5s ease-in-out infinite; }
+.result-placeholder h3 { font-size: 1.1rem; font-weight: 600; color: #64748b; }
+.result-placeholder p  { font-size: 0.85rem; color: #475569; max-width: 280px; line-height: 1.6; }
+
+/* Result Card */
+.result-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  backdrop-filter: blur(16px);
+}
+
+/* Risk Badge */
+.risk-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 18px;
+  padding: 20px 24px;
+}
+.risk-emoji { font-size: 2.4rem; }
+.risk-level-label { font-size: 0.75rem; color: inherit; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+.risk-level-value { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900; line-height: 1; }
+.risk-score { margin-left: auto; font-size: 0.9rem; font-weight: 700; opacity: 0.8; }
+
+/* Route Path */
+.route-path {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+}
+.path-from, .path-to { font-weight: 600; color: #e2e8f0; }
+.path-arrow { color: #475569; }
+
+/* Analysis Sections */
+.analysis-section h4 { font-size: 0.85rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+.reason-list { display: flex; flex-direction: column; gap: 8px; }
+.reason-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.reason-row.high   { background: rgba(239,68,68,0.1);  color: #fca5a5; }
+.reason-row.medium { background: rgba(245,158,11,0.1); color: #fcd34d; }
+.reason-row.low    { background: rgba(34,197,94,0.1);  color: #86efac; }
+
+.tips-list { display: flex; flex-direction: column; gap: 8px; }
+.tip-item {
+  font-size: 0.86rem;
+  color: #94a3b8;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  border-left: 3px solid rgba(168, 85, 247, 0.5);
+}
+
+.open-maps-btn {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #ff2d78, #a855f7);
+  color: white;
+  text-decoration: none;
+  padding: 15px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 45, 120, 0.3);
+}
+.open-maps-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 45, 120, 0.4); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .route-layout { grid-template-columns: 1fr; }
+}
