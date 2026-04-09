@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Zone | SheShield</title>
+
+<style>
+:root{
+    --pink:#ff2f92;
+    --light:#ffe6f2;
+    --white:#fff;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    background: linear-gradient(135deg,#ffc1e3,#ffe6f2,#ffffff);
+}
+
+/* NAVBAR */
+.navbar{
+    background: var(--pink);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    padding:8px 12px;
+    border-radius:6px;
+}
+
+.nav-links a:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+/* HERO IMAGE */
+.hero{
+    text-align:center;
+    margin-top:20px;
+}
+
+.hero img{
+    width:180px;
+}
+
+/* CARD */
+.card{
+    max-width:420px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(15px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+/* TITLE */
+.card h2{
+    margin-bottom:15px;
+}
+
+/* BUTTON */
+.btn{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    background: linear-gradient(to right,#ff5fa2,#ff2f92);
+    color:white;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* OUTPUT BOX */
+.output{
+    margin-top:15px;
+    padding:15px;
+    border-radius:15px;
+    background:#f3f3f3;
+    text-align:left;
+}
+
+/* SOS BUTTONS */
+.sos{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.sos button{
+    flex:1;
+    padding:12px;
+    border-radius:20px;
+    border:none;
+    cursor:pointer;
+}
+
+.call{
+    background:linear-gradient(to right,#ff7eb3,#ff2f92);
+    color:white;
+}
+
+.share{
+    background:white;
+    border:2px solid var(--pink);
+    color:var(--pink);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛡️ SheShield</h2>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="route.html">Safe Route</a>
+        <a href="szone.html">Safe Zone</a>
+        <a href="sos.html">SOS</a>
+        <a href="live.html">Live Tracking</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <img src="https://static.vecteezy.com/system/resources/previews/019/980/655/original/cute-indian-girl-cartoon-character-png.png">
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+    <h2>🧭 Find Safe Zones Near You</h2>
+
+    <button class="btn" onclick="findSafeZone()">Find Safe Zone</button>
+
+    <div id="output" class="output">
+        Detecting safe places will appear here...
+    </div>
+
+    <!-- SOS -->
+    <div class="sos">
+        <button class="call" onclick="callSOS()">📞 Call</button>
+        <button class="share" onclick="shareLocation()">📍 Share</button>
+    </div>
+
+</div>
+
+<script>
+// ✅ FIXED FUNCTION
+function findSafeZone() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            // ✅ Proper nearby search (CORRECT FIX)
+            let police = `https://www.google.com/maps/search/police+station/@${lat},${lon},15z`;
+            let hospital = `https://www.google.com/maps/search/hospital/@${lat},${lon},15z`;
+            let bus = `https://www.google.com/maps/search/bus+stop/@${lat},${lon},15z`;
+            let cab = `https://www.google.com/maps/search/taxi/@${lat},${lon},15z`;
+
+            document.getElementById("output").innerHTML =
+                "🧭 SAFE OPTIONS NEAR YOU:<br><br>" +
+                "📍 Your Location: (" + lat.toFixed(4) + ", " + lon.toFixed(4) + ")<br><br>" +
+
+                "🚓 <a href='" + police + "' target='_blank'>Nearby Police Station</a><br><br>" +
+                "🏥 <a href='" + hospital + "' target='_blank'>Nearby Hospital</a><br><br>" +
+                "🚕 <a href='" + cab + "' target='_blank'>Nearby Cab</a><br><br>" +
+                "🚌 <a href='" + bus + "' target='_blank'>Nearby Bus Stop</a>";
+
+        }, function(error) {
+            document.getElementById("output").innerText =
+                "❌ Location error: " + error.message;
+        }, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        });
+
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+
+// CALL SOS
+function callSOS(){
+    window.location.href="tel:112";
+}
+
+function makeEmergencyCall() {
+    let number1 = "916380717258";
+    window.location.href = `tel:${number1}`;
+}
+
+// SHARE LOCATION
+function shareLocation(){
+    const output=document.getElementById("output");
+
+    navigator.geolocation.getCurrentPosition((pos)=>{
+        let link=`https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+
+        output.innerHTML=`
+        🚨 <b>Emergency Location:</b><br><br>
+        <a href="${link}" target="_blank">${link}</a>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>

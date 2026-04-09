@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS Emergency | SheShield</title>
+
+<style>
+:root{
+    --pink:#ff2f92;
+    --dark:#e0267f;
+    --white:#fff;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    background: linear-gradient(135deg,#ffc1e3,#ffe6f2,#ffffff);
+    text-align:center;
+}
+
+/* NAVBAR */
+.navbar{
+    background: var(--pink);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    padding:8px 12px;
+    border-radius:6px;
+}
+
+.nav-links a:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+/* HERO IMAGE */
+.hero{
+    margin-top:20px;
+}
+
+.hero img{
+    width:160px;
+}
+
+/* CARD */
+.card{
+    max-width:400px;
+    margin:30px auto;
+    padding:25px;
+    border-radius:20px;
+
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+.card h2{
+    margin-bottom:10px;
+}
+
+/* ROUND SOS BUTTON */
+.sos-btn{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:none;
+    background: linear-gradient(45deg,#ff1744,#ff2f92);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    margin:20px auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 25px rgba(255,0,80,0.4);
+    transition:0.3s;
+    animation:pulse 1.5s infinite;
+}
+
+/* HOVER EFFECT */
+.sos-btn:hover{
+    transform:scale(1.1);
+}
+
+/* PULSE ANIMATION */
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(255,47,146,0.7);
+    }
+    70%{
+        box-shadow:0 0 0 25px rgba(255,47,146,0);
+    }
+    100%{
+        box-shadow:0 0 0 0 rgba(255,47,146,0);
+    }
+}
+
+/* OUTPUT */
+.output{
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:#f3f3f3;
+    text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛡️ SheShield</h2>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="route.html">Safe Route</a>
+        <a href="szone.html">Safe Zone</a>
+        <a href="sos.html">SOS</a>
+        <a href="live.html">Live Tracking</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <img src="https://static.vecteezy.com/system/resources/previews/019/980/655/original/cute-indian-girl-cartoon-character-png.png">
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+    <h2>🚨 Emergency SOS</h2>
+    <p>Tap the button to send your live location</p>
+
+    <!-- ROUND SOS BUTTON -->
+    <button class="sos-btn" onclick="sendSOS()">SOS</button>
+
+    <div id="output" class="output">
+        Your emergency message will appear here...
+    </div>
+
+</div>
+
+<script>
+function sendSOS() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            let message = `⚠️ Sakthi is in danger! Location: https://www.google.com/maps?q=${lat},${lon}`;
+
+            alert(message);
+
+            let phoneNumbers = "916380717258,916384142900";
+
+            let smsLink = `sms:${phoneNumbers}?body=${encodeURIComponent(message)}`;
+
+            document.getElementById("output").innerHTML =
+                "🚨 SOS READY!<br><br>" +
+                "<a href='" + smsLink + "'>📩 Click here to send SMS</a>";
+
+        }, function() {
+            document.getElementById("output").innerHTML = "❌ Location access denied";
+        });
+
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SafeHer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Full page layout */
+body {
+    height: 100vh;
+}
+
+/* Container split */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Top section */
+.top {
+    flex: 1;
+    background: #d8cccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* allow overlap */
+}
+
+.top img {
+    width: 260px;
+    max-width: 80%;
+    position: relative;
+    top: -17000px;  /* 👈 perfect slight upward move */
+}
+
+/* Bottom section with diagonal */
+.bottom {
+    flex: 1;
+    background: #ff2f92;
+    clip-path: polygon(0 30%, 100% 0%, 100% 100%, 0% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Content */
+.icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+<style>
+/* Container */
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+/* Top section */
+.top {
+    height: 55%;
+    background: #d8cccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top img {
+    width: 230px;
+    max-width: 90%;
+    object-fit: contain;
+    position: relative;
+    top: -111px;   /* 👈 move image upward */
+}
+/* Bottom section */
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55%;
+    background: #ff2f92;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Smooth diagonal using pseudo element */
+.bottom::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: #ff2f92;
+    transform: skewY(-8deg);
+}
+
+/* Content fix (keep above diagonal) */
+.bottom * {
+    position: relative;
+    z-index: 1;
+}
+
+.icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Top Section -->
+  <div class="top">
+    <img src="https://static.vecteezy.com/system/resources/previews/019/980/655/original/cute-indian-girl-cartoon-character-png.png" alt="Girl">
+</div>
+
+    <!-- Bottom Section -->
+    <div class="bottom">
+        <div class="icon">👩‍🛡️</div>
+        <h1>SheShield</h1>
+        <p>Your safety,<br>One Tap Away</p>
+        <button><a href="log.html" class="btn">Get Started</a></button>
+        
+    </div>
+
+</div>
+
+</body>
+</html>

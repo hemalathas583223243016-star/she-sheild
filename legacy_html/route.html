@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Route</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #ffe6f2, #fff);
+}
+
+/* NAVBAR */
+.navbar {
+    background: #ff2f92;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* CARD */
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #ff2f92;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e0267f;
+}
+
+/* OUTPUT */
+#output {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* BIG MAP */
+#map {
+    width: 100%;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛡️ SheShield</h2>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="route.html">Safe Route</a>
+        <a href="szone.html">Safe Zone</a>
+        <a href="sos.html">SOS</a>
+        <a href="live.html">Live Tracking</a>
+    </div>
+</div>
+
+<!-- INPUT -->
+<div class="container">
+    <h2>Find Safe Route</h2>
+
+    <input type="text" id="source" placeholder="Enter Source">
+    <input type="text" id="destination" placeholder="Enter Destination">
+
+    <button onclick="findRoute()">Find Route</button>
+
+    <p id="output"></p>
+</div>
+
+<!-- MAP -->
+<div id="map"></div>
+
+<script>
+let map;
+let directionsService;
+let directionsRenderer;
+
+// INIT MAP
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 13.0827, lng: 80.2707 },
+        zoom: 12,
+    });
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+
+    directionsRenderer.setMap(map);
+}
+
+// FIND ROUTE with Risk Assessment
+function findRoute() {
+    let source = document.getElementById("source").value.toLowerCase();
+    let destination = document.getElementById("destination").value.toLowerCase();
+
+    if (!source || !destination) {
+        alert("Please enter both locations");
+        return;
+    }
+
+    let currentHour = new Date().getHours();
+
+    let riskScore = 0;
+    let reasons = [];
+
+    // 🕒 Time-based risk
+    if (currentHour >= 21 || currentHour <= 5) {
+        riskScore += 3;
+        reasons.push("Night time (low visibility)");
+    } else if (currentHour >= 18) {
+        riskScore += 2;
+        reasons.push("Evening time");
+    } else {
+        reasons.push("Day time (safer)");
+    }
+
+    // 📍 Dummy crime data (you can add more areas)
+    let highRiskAreas = ["dark street", "isolated road", "forest", "unknown area"];
+    highRiskAreas.forEach(area => {
+        if (source.includes(area) || destination.includes(area)) {
+            riskScore += 3;
+            reasons.push("High crime-prone area");
+        }
+    });
+
+    // 👥 Crowd simulation
+    if (destination.includes("mall") || destination.includes("bus stand")) {
+        reasons.push("High crowd area (safer)");
+    } else {
+        riskScore += 1;
+        reasons.push("Low crowd area");
+    }
+
+    // 💡 Lighting simulation
+    if (currentHour >= 19) {
+        riskScore += 2;
+        reasons.push("Low lighting conditions");
+    }
+
+    // 🎯 Final risk level
+    let riskLevel = "";
+    if (riskScore >= 5) {
+        riskLevel = "🔴 High Risk";
+    } else if (riskScore >= 3) {
+        riskLevel = "🟡 Medium Risk";
+    } else {
+        riskLevel = "🟢 Safe";
+    }
+
+    // 🌍 Route link
+    let routeLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}&travelmode=walking`;
+
+    document.getElementById("output").innerHTML =
+        `<b>🧠 Risk Level: ${riskLevel}</b><br><br>
+        📊 Reasons:<br> - ${reasons.join("<br> - ")}<br><br>
+        🗺️ <a href="${routeLink}" target="_blank">View Route</a>`;
+}
+</script>
+
+<!-- ✅ YOUR API KEY USED -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHrSYd0jdFlqanPZK6pxdHfHoUMYcCQgY&callback=initMap" async defer></script>
+
+</body>
+</html>

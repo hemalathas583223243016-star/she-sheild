@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SheShield | Women Safety</title>
+
+<style>
+:root{
+    --pink:#ff2f92;
+    --dark:#e0267f;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    background: linear-gradient(135deg,#ffc1e3,#ffe6f2,#ffffff);
+}
+
+/* NAVBAR */
+.navbar{
+    background: var(--pink);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    padding:8px 12px;
+    border-radius:6px;
+}
+
+.nav-links a:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero img{
+    width:180px;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-top:10px;
+}
+
+.hero p{
+    margin-top:10px;
+    font-size:16px;
+    color:#444;
+}
+
+/* BUTTONS */
+.btns{
+    margin-top:20px;
+}
+
+.btn{
+    padding:12px 20px;
+    margin:10px;
+    border:none;
+    border-radius:25px;
+    background: linear-gradient(to right,#ff5fa2,#ff2f92);
+    color:white;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+/* FEATURES */
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:30px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+/* ABOUT */
+.about{
+    padding:30px;
+    text-align:center;
+}
+
+.about h2{
+    margin-bottom:10px;
+}
+
+/* OUTPUT BOX FOR VOICE/MOTION ALERT */
+#output {
+    margin-top:20px;
+    font-weight:bold;
+    font-size:18px;
+    color:#333;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛡️ SheShield</h2>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="route.html">Safe Route</a>
+        <a href="szone.html">Safe Zone</a>
+        <a href="sos.html">SOS</a>
+        <a href="live.html">Live Tracking</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <img src="https://static.vecteezy.com/system/resources/previews/019/980/655/original/cute-indian-girl-cartoon-character-png.png" alt="Girl Image">
+    <h1>Your Safety Matters 💗</h1>
+    <p>Smart protection system for women using AI & real-time safety tools</p>
+
+    <div class="btns">
+        <a href="route.html" class="btn">🗺️ Safe Route</a>
+        <a href="szone.html" class="btn">🧭 Safe Zone</a>
+        <a href="sos.html" class="btn">🚨 SOS</a>
+        
+
+    </div>
+</div>
+
+<!-- OUTPUT FOR VOICE/MOTION ALERT -->
+<div id="output">🎤 System initializing...</div>
+<!-- FEATURES -->
+<div class="features">
+
+    <div class="card">
+        <h3>🗺️ Safe Route</h3>
+        <p>Find safest path based on time, crowd & risk level.</p>
+    </div>
+
+    <div class="card">
+        <h3>🧭 Safe Zones</h3>
+        <p>Locate nearby police stations, hospitals & safe places.</p>
+    </div>
+
+    <div class="card">
+        <h3>🚨 Emergency SOS</h3>
+        <p>Send instant alert with your live location.</p>
+    </div>
+
+    <div class="card">
+        <h3>🎤 Voice Safety</h3>
+        <p>Trigger SOS using secret voice command.</p>
+    </div>
+
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+    <h2>About SheShield</h2>
+    <p>
+        SheShield is a smart women safety platform designed to protect and empower women.
+        It provides real-time safety features like safe route navigation, emergency alerts,
+        live tracking and nearby safe zone detection.
+    </p>
+</div>
+
+
+
+<script>
+// ==========================
+// VOICE RECOGNITION + MOTION
+// ==========================
+function startVoice() {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = "en-US";
+    recognition.continuous = true;
+    recognition.start();
+
+    document.getElementById("output").innerText = "🎤 Listening for safety phrase...";
+
+    recognition.onresult = function(event) {
+        let speech = event.results[event.results.length - 1][0].transcript.toLowerCase();
+        console.log("Heard:", speech);
+
+        // Secret code word
+        if (speech.includes("hello who's this") || speech.includes("hello who is this")) {
+            document.getElementById("output").innerText =
+                "🚨 Secret Voice Trigger Activated! Sending Alert...";
+            sendSOS();
+        }
+    };
+
+    recognition.onerror = function(event) {
+        console.log("Voice error:", event.error);
+    };
+}
+
+// MOTION DETECTION
+let lastX = null, lastY = null, lastZ = null;
+
+function startMotionDetection() {
+    window.addEventListener("devicemotion", function(event) {
+        let acc = event.accelerationIncludingGravity;
+        if (!acc) return;
+
+        let x = acc.x, y = acc.y, z = acc.z;
+
+        if (lastX !== null) {
+            let diff = Math.abs((x + y + z) - (lastX + lastY + lastZ));
+            if (diff > 25) { // Threshold
+                document.getElementById("output").innerText =
+                    "⚠️ Abnormal Movement Detected! Triggering SOS...";
+                sendSOS();
+            }
+        }
+
+        lastX = x; lastY = y; lastZ = z;
+    });
+}
+
+// SOS FUNCTION (dummy for now)
+function sendSOS() {
+    alert("📢 SOS Sent! Emergency contacts notified."); 
+    // You can replace this with real SMS/email/API call
+}
+
+// START MONITORING AFTER PAGE LOAD
+window.onload = function() {
+    setTimeout(() => {
+        startVoice();
+        startMotionDetection();
+    }, 2000);
+};
+</script>
+
+</body>
+</html>

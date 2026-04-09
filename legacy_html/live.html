@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SheShield | Live Tracking</title>
+
+<style>
+:root{
+    --pink:#ff2f92;
+    --dark:#e0267f;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    background: linear-gradient(135deg,#ffc1e3,#ffe6f2,#ffffff);
+}
+
+/* NAVBAR */
+.navbar{
+    background: var(--pink);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    padding:8px 12px;
+    border-radius:6px;
+}
+
+.nav-links a:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:40px 20px;
+}
+
+/* TRACK BOX */
+.tracking-box{
+    width:90%;
+    max-width:500px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+button{
+    background:var(--pink);
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:15px;
+}
+
+button:hover{
+    background:var(--dark);
+}
+
+/* OUTPUT */
+#output{
+    margin-top:20px;
+    font-weight:bold;
+    line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛡️ SheShield</h2>
+    <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="route.html">Safe Route</a>
+        <a href="szone.html">Safe Zone</a>
+        <a href="sos.html">SOS</a>
+        <a href="live.html">Live Tracking</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>📍 Live Tracking</h1>
+    <p>Track your real-time location without map</p>
+</div>
+
+<!-- TRACKING BOX -->
+<div class="tracking-box">
+    <h3>Start Live Tracking</h3>
+    <button onclick="startTracking()">Start Tracking</button>
+
+    <p id="output">Click button to start...</p>
+</div>
+
+<script>
+function startTracking() {
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.watchPosition(function(position) {
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            let link = `https://www.google.com/maps?q=${lat},${lon}`;
+
+            document.getElementById("output").innerHTML =
+                "📡 LIVE TRACKING ACTIVE<br><br>" +
+                "📍 Latitude: " + lat + "<br>" +
+                "📍 Longitude: " + lon + "<br><br>" +
+                `<a href="${link}" target="_blank">📍 Open in Google Maps</a>`;
+
+        }, function(error) {
+            document.getElementById("output").innerHTML =
+                "❌ Location access denied or error";
+        }, {
+            enableHighAccuracy: true
+        });
+
+    } else {
+        document.getElementById("output").innerHTML =
+            "❌ Geolocation not supported";
+    }
+}
+</script>
+
+</body>
+</html>
